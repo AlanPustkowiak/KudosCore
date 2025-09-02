@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.scss'
+  styleUrl: './navbar.scss',
 })
 export class Navbar {
   title = input<string>('KudosCore');

@@ -2,10 +2,14 @@
   <div class="container mx-auto">
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center space-x-4">
-        <h1 class="text-xl font-bold">{{ title() }}</h1>
-        <a href="#" class="hover:text-blue-200 transition-colors">Home</a>
-        <a href="#" class="hover:text-blue-200 transition-colors">About</a>
-        <a href="#" class="hover:text-blue-200 transition-colors">Contact</a>
+        <a href="/"
+          ><h1 class="text-xl font-bold">{{ title() }}</h1></a
+        >
+        <a
+          routerLink="/points-list"
+          class="hover:text-blue-200 transition-colors"
+          >Points</a
+        >
       </div>
     </div>
   </div>
