@@ -44,4 +44,8 @@ export class KudosService {
     };
     this.kudosList.update((list) => [...list, newKudos]);
   }
+
+  removeKudos(id: number) {
+    this.kudosList.update((list) => list.filter((k) => k.id !== id));
+  }
 }
