@@ -1,6 +1,11 @@
 <div class="container mx-auto p-4 flex flex-col items-center">
-  <h2 class="text-2xl font-bold mb-4">Add Points</h2>
-  <form [formGroup]="pointsForm" (ngSubmit)="onSubmit()">
+  <h2 class="text-2xl font-bold mb-6">Add Points</h2>
+
+  <form
+    [formGroup]="pointsForm"
+    (ngSubmit)="onSubmit()"
+    class="w-full max-w-md"
+  >
     <div class="mb-4">
       <label for="employeeId" class="block text-gray-700 font-bold mb-2"
         >To:</label
@@ -10,7 +15,68 @@
         formControlName="employeeId"
         class="w-full border border-gray-300 rounded px-3 py-2"
         [class.border-red-500]="isFieldInvalid('employeeId')"
-      ></select>
+      >
+        <option value="">Select an employee</option>
+        @for (employee of employees$(); track employee.id) {
+        <option [value]="employee.id">
+          {{ employee.name }}
+        </option>
+        } @empty {
+        <option disabled>No employees found</option>
+        }
+      </select>
+      @if (isFieldInvalid('employeeId')) {
+      <span class="text-red-500 text-sm">Employee is required.</span>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="comment" class="block text-gray-700 font-bold mb-2">
+        comment:
+      </label>
+      <textarea
+        id="comment"
+        formControlName="comment"
+        class="w-full border border-gray-300 rounded px-3 py-2"
+        [class.border-red-500]="isFieldInvalid('comment')"
+        rows="4"
+      ></textarea>
+      @if (isFieldInvalid('comment')) {
+      <span class="text-red-500 text-sm">comment is required.</span>
+      }
+    </div>
+    <div class="mb-6">
+      <label for="points" class="block text-gray-700 font-bold mb-2"
+        >Points:</label
+      >
+      <input
+        type="number"
+        id="points"
+        formControlName="points"
+        class="w-full border border-gray-300 rounded px-3 py-2"
+        [class.border-red-500]="isFieldInvalid('points')"
+        placeholder="Enter points amount"
+      />
+      @if (isFieldInvalid('points')) {
+      <span class="text-red-500 text-sm"
+        >Points must be a positive number.</span
+      >
+      }
+    </div>
+    <div class="flex gap-4">
+      <button
+        type="submit"
+        [disabled]="pointsForm.invalid || isSubmitting()"
+        class="flex-1 bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400"
+      >
+        {{ isSubmitting() ? "Adding..." : "Add Points" }}
+      </button>
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="flex-1 bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded hover:bg-gray-400"
+      >
+        Cancel
+      </button>
     </div>
   </form>
 </div>
