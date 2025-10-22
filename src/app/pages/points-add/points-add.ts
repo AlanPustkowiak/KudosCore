@@ -8,12 +8,10 @@ import {
 import { KudosService } from '../../services/kudos.service';
 import { EmployeeService } from '../../services/employee.service';
 import { Router } from '@angular/router';
-import { Employee } from '../../models/employee.model';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-points-add',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './points-add.html',
   styleUrl: './points-add.scss',
 })
